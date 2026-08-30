@@ -9,10 +9,20 @@
   const quieto  = captura || matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $  = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
-  if (captura) $$('img[loading="lazy"]').forEach(i => i.loading = 'eager');
+  if (captura) {
+    $$('img[loading="lazy"]').forEach(i => i.loading = 'eager');
+    document.documentElement.classList.add('captura');
+  }
 
   // useGrouping:'always' — sin esto, es-ES no separa los millares de 4 cifras
   // y "8280 €" queda junto a "31.720 €" en la misma tarjeta
+  const cabecera = $('.cab');
+  if (cabecera) {
+    const medir = () => document.documentElement.style
+      .setProperty('--cab-h', cabecera.offsetHeight + 'px');
+    medir(); addEventListener('resize', medir, { passive: true });
+  }
+
   const eur = n => new Intl.NumberFormat('es-ES', {
     style: 'currency', currency: 'EUR', maximumFractionDigits: 0, useGrouping: 'always'
   }).format(Math.round(n));

@@ -16,9 +16,13 @@
 .cab__tel{font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
 
 /* ---------- Hero: el simulador ---------- */
-.hero{background:var(--indigo);color:var(--blanco);padding-block:var(--e5)}
-@media (min-width:900px){.hero{padding-block:var(--e6)}}
-.hero__rejilla{display:grid;gap:var(--e4)}
+.hero{
+  background:var(--indigo);color:var(--blanco);
+  min-height:calc(100svh - var(--cab-h,54px));
+  display:grid;align-items:center;padding-block:var(--e4);
+}
+@media (min-width:900px){.hero{padding-block:var(--e3)}}
+.hero__rejilla{display:grid;gap:var(--e4);width:100%}
 @media (min-width:1000px){.hero__rejilla{grid-template-columns:5fr 7fr;gap:var(--e5);align-items:center}}
 .hero__titulo{font-family:var(--display);font-size:var(--t-display);font-weight:600;
   line-height:1.02;letter-spacing:-.03em}
@@ -30,11 +34,12 @@
 
 /* El simulador */
 .sim{background:var(--blanco);color:var(--tinta);border-radius:3px;padding:var(--e3);min-width:0}
-@media (min-width:600px){.sim{padding:var(--e4)}}
+.sim__salida{margin-top:var(--e3)}
+@media (min-width:600px){.sim{padding:clamp(22px,2vw,30px)}}
 .sim__cabeza{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:var(--e2)}
 .sim__titulo{font-family:var(--ui);font-weight:700;font-size:1.0625rem}
 .sim__nota{font-size:.8125rem;color:var(--grafito)}
-.sim__campo{display:grid;gap:8px;margin-top:var(--e3)}
+.sim__campo{display:grid;gap:6px;margin-top:var(--e2)}
 .sim__campo label{font-size:var(--t-eyebrow);font-weight:600;letter-spacing:.1em;
   text-transform:uppercase;color:var(--grafito)}
 .sim__entrada{display:flex;align-items:center;gap:10px;
@@ -48,20 +53,20 @@
 .sim__entrada span{font-size:1.25rem;font-weight:700;color:var(--grafito)}
 .sim__rango{width:100%;margin-top:12px;accent-color:var(--indigo)}
 
-.sim__salida{margin-top:var(--e4);display:grid;gap:var(--e3)}
+.sim__salida{margin-top:var(--e3);display:grid;gap:var(--e2)}
 .sim__caso{display:grid;gap:8px}
 .sim__caso-cabeza{display:flex;align-items:baseline;justify-content:space-between;gap:var(--e2)}
 .sim__caso-nombre{font-weight:700;font-size:.9375rem}
 .sim__caso-neto{font-weight:700;font-variant-numeric:tabular-nums;font-size:1.0625rem}
 .sim__caso-detalle{font-size:.8125rem;color:var(--grafito);font-variant-numeric:tabular-nums}
 .sim__ahorro{
-  margin-top:var(--e2);padding:var(--e2) var(--e3);border-radius:2px;
+  margin-top:6px;padding:14px var(--e3);border-radius:2px;
   background:var(--queda-claro);color:#1D4634;font-weight:600;
   display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;
 }
 .sim__ahorro b{font-size:1.25rem;font-variant-numeric:tabular-nums}
-.sim__pie{margin-top:var(--e3);display:flex;flex-wrap:wrap;gap:var(--e2);align-items:center}
-.sim__aviso{font-size:.75rem;color:var(--grafito);margin-top:var(--e2)}
+.sim__pie{margin-top:var(--e2);display:flex;flex-wrap:wrap;gap:var(--e2);align-items:center}
+.sim__aviso{font-size:.75rem;line-height:1.5;color:var(--grafito);margin-top:10px}
 
 /* ---------- Triaje ---------- */
 .triaje{display:flex;flex-wrap:wrap;gap:10px;margin-top:var(--e3)}
@@ -198,3 +203,6 @@
 .barra a[data-p]{background:var(--blanco);color:var(--indigo)}
 body{padding-bottom:60px}
 @media (min-width:1020px){body{padding-bottom:0}}
+
+/* Solo en captura de página completa: 100svh con ventana muy alta infla el hero */
+.captura .hero{min-height:0}
