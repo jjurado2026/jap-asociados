@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js')</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asesoría fiscal para traders y empresas en Madrid | JAP &amp; Asociados</title>
+<meta name="description" content="Asesoría certificada UNE 420001 en Parla, Madrid. Especialistas en fiscalidad del trading, cuentas fondeadas y cripto. Fiscal, laboral, contable, fincas y peritaje. Diagnóstico gratuito de 30 minutos.">
+<meta name="theme-color" content="#33356B">
+<link rel="canonical" href="https://japyasociados.com/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Asesoría fiscal para traders y empresas en Madrid | JAP &amp; Asociados">
+<meta property="og:description" content="Calcula lo que pagas por tu operativa antes de preguntar. Asesoría certificada UNE 420001:2024.">
+<meta property="og:url" content="https://japyasociados.com/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="assets/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/public-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/global.css">
+<link rel="stylesheet" href="assets/css/home.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2333356B'/><rect x='5' y='13' width='13' height='6' fill='%232F6B4F'/><rect x='18' y='13' width='9' height='6' fill='%23A8352B'/></svg>">
+</head>
+<body>
+<a class="salta" href="#principal">Saltar al contenido</a>
+
+<header class="cab">
+  <div class="env cab__fila">
+    <a class="cab__marca" href="#principal">JAP <span>&amp; Asociados</span></a>
+    <nav class="cab__nav" aria-label="Principal">
+      <a class="cab__link" href="#servicios">Servicios</a>
+      <a class="cab__link" href="#traders">Traders</a>
+      <a class="cab__link" href="#herramientas">Herramientas</a>
+      <a class="cab__link" href="#equipo">Equipo</a>
+      <a class="cab__link" href="#contacto">Contacto</a>
+    </nav>
+    <div class="cab__der">
+      <a class="cab__tel" href="tel:+34925101997">925 101 997</a>
+    </div>
+  </div>
+</header>
+
+<main id="principal">
+
+<!-- ============ HERO: EL SIMULADOR ============ -->
+<section class="hero sobre-indigo" aria-labelledby="t-hero">
+  <div class="env hero__rejilla">
+    <div>
+      <span class="eyebrow">Especialistas en fiscalidad del trading</span>
+      <h1 class="hero__titulo" id="t-hero">Tu operativa, en regla y defendible.</h1>
+      <p class="hero__sub">Asesoría multidisciplinar certificada UNE 420001. Hacemos lo difícil e intentamos lo imposible.</p>
+      <div class="hero__acciones">
+        <a class="btn" href="#contacto">1ª consulta gratis</a>
+        <a class="btn btn--linea" href="#traders">Ver planes</a>
+      </div>
+      <div class="hero__credenciales">
+        <span class="sello-une">
+          <span class="sello-une__marca" aria-hidden="true">UNE</span>
+          <span class="sello-une__txt"><b>UNE 420001:2024</b><span>Cert. 100736 · vigente hasta 27-11-2026</span></span>
+        </span>
+        <span class="hero__estrellas"><b>★ 4,8</b> · 30 opiniones</span>
+      </div>
+    </div>
+
+    <div class="sim" id="simulador">
+      <div class="sim__cabeza">
+        <h2 class="sim__titulo">¿Cuánto pagas por lo que ganas operando?</h2>
+        <span class="sim__nota">Cálculo orientativo</span>
+      </div>
+
+      <div class="sim__campo">
+        <label for="beneficio">Beneficio anual de tu operativa</label>
+        <div class="sim__entrada">
+          <input id="beneficio" type="text" inputmode="numeric" value="40.000" autocomplete="off"
+            aria-describedby="sim-aviso">
+          <span aria-hidden="true">€</span>
+        </div>
+        <input class="sim__rango" id="beneficio-rango" type="range" min="5000" max="300000" step="5000" value="40000"
+          aria-label="Beneficio anual, control deslizante">
+      </div>
+
+      <div class="sim__salida">
+        <div class="sim__caso">
+          <div class="sim__caso-cabeza">
+            <span class="sim__caso-nombre">Como persona física</span>
+            <span class="sim__caso-neto dato" id="pf-neto">—</span>
+          </div>
+          <div class="tramo tramo--alto" role="img" aria-labelledby="pf-detalle">
+            <span class="tramo__parte tramo__parte--queda" id="pf-barra-queda"></span>
+            <span class="tramo__parte tramo__parte--paga" id="pf-barra-paga"></span>
+          </div>
+          <p class="sim__caso-detalle" id="pf-detalle">Base del ahorro · pagas <b id="pf-paga">—</b> (<span id="pf-tipo">—</span> efectivo)</p>
+        </div>
+
+        <div class="sim__caso">
+          <div class="sim__caso-cabeza">
+            <span class="sim__caso-nombre">A través de sociedad</span>
+            <span class="sim__caso-neto dato" id="sl-neto">—</span>
+          </div>
+          <div class="tramo tramo--alto" role="img" aria-labelledby="sl-detalle">
+            <span class="tramo__parte tramo__parte--queda" id="sl-barra-queda"></span>
+            <span class="tramo__parte tramo__parte--paga" id="sl-barra-paga"></span>
+          </div>
+          <p class="sim__caso-detalle" id="sl-detalle">Impuesto de Sociedades al 23% · pagas <b id="sl-paga">—</b></p>
+        </div>
+
+        <ul class="leyenda">
+          <li><i class="queda"></i> Lo que te queda</li>
+          <li><i class="paga"></i> Lo que pagas</li>
+        </ul>
+
+        <p class="sim__ahorro" id="sim-ahorro" role="status">
+          <span>Diferencia entre las dos vías:</span> <b id="ahorro-cifra">—</b>
+        </p>
+      </div>
+
+      <div class="sim__pie">
+        <a class="btn" href="#contacto">Diagnóstico gratuito de 30 min</a>
+      </div>
+      <p class="sim__aviso" id="sim-aviso">
+        Cálculo orientativo y simplificado. No contempla gastos deducibles, compensación de pérdidas de ejercicios anteriores, cuota de autónomos, retenciones ni el coste de extraer el dinero de la sociedad. <strong>Por eso existe el diagnóstico de 30 minutos.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRIAJE + SERVICIOS ============ -->
+<section class="seccion" id="servicios" aria-labelledby="t-serv">
+  <div class="env">
+    <span class="eyebrow">Departamentos profesionales</span>
+    <h2 class="entra" id="t-serv">¿Qué eres?</h2>
+    <p class="lead entra" data-r="1">Ocho servicios para cinco públicos distintos. Dinos cuál eres y te enseñamos solo lo tuyo.</p>
+
+    <div class="triaje entra" data-r="2" role="group" aria-label="Filtrar servicios por perfil">
+      <button class="chip" type="button" aria-pressed="true" data-perfil="todo">Todos</button>
+      <button class="chip" type="button" aria-pressed="false" data-perfil="trader">Trader</button>
+      <button class="chip" type="button" aria-pressed="false" data-perfil="autonomo">Autónomo</button>
+      <button class="chip" type="button" aria-pressed="false" data-perfil="pyme">PYME</button>
+      <button class="chip" type="button" aria-pressed="false" data-perfil="comunidad">Comunidad de propietarios</button>
+      <button class="chip" type="button" aria-pressed="false" data-perfil="funcionario">Funcionario</button>
+    </div>
+
+    <div class="serv" id="lista-servicios">
+      <a class="serv__fila entra" href="#traders" data-perfil="trader autonomo pyme">
+        <span class="serv__nombre">Fiscalidad para traders <span class="flecha" aria-hidden="true">→</span></span>
+        <span class="serv__disc">Cuentas fondeadas · derivados y CFDs · cripto · modelo 721</span>
+        <span class="serv__precio">desde 190 €</span>
+        <span class="serv__barra"><span class="tramo tramo--fino"><span class="tramo__parte tramo__parte--indigo" style="flex:0 0 34%"></span></span></span>
+      </a>
+      <a class="serv__fila entra" href="#contacto" data-perfil="autonomo pyme">
+        <span class="serv__nombre">Asesoría de empresas y autónomos <span class="flecha" aria-hidden="true">→</span></span>
+        <span class="serv__disc">Fiscal · laboral · contable · financiero. Estrategias empresariales</span>
+        <span class="serv__precio">desde 30 €<small>/mes</small></span>
+        <span class="serv__barra"><span class="tramo tramo--fino"><span class="tramo__parte tramo__parte--indigo" style="flex:0 0 8%"></span></span></span>
+      </a>
+      <a class="serv__fila entra" href="#contacto" data-perfil="trader autonomo pyme comunidad funcionario">
+        <span class="serv__nombre">Asesoría jurídica <span class="flecha" aria-hidden="true">→</span></span>
+        <span class="serv__disc">Civil · penal · laboral · mercantil · contencioso · segunda oportunidad</span>
+        <span class="serv__precio">ver tarifas</span>
+        <span class="serv__barra"><span class="tramo tramo--fino"><span class="tramo__parte tramo__parte--indigo" style="flex:0 0 55%"></span></span></span>
+      </a>
+      <a class="serv__fila entra" href="#contacto" data-perfil="comunidad">
+        <span class="serv__nombre">Administración de fincas <span class="flecha" aria-hidden="true">→</span></span>
+        <span class="serv__disc">Gestión eficaz y tecnológicamente avanzada. Atención 24/7</span>
+        <span class="serv__precio">desde 50 €<small>/mes</small></span>
+        <span class="serv__barra"><span class="tramo tramo--fino"><span class="tramo__parte tramo__parte--indigo" style="flex:0 0 12%"></span></span></span>
+      </a>
+      <a class="serv__fila entra" href="#contacto" data-perfil="autonomo pyme">
+        <span class="serv__nombre">Gestión de patrimonio <span class="flecha" aria-hidden="true">→</span></span>
+        <span class="serv__disc">Patrimonio financiero e inmobiliario, gestionado con rigor</span>
+        <span class="serv__precio">a medida</span>
+        <span class="serv__barra"><span class="tramo tramo--fino"><span class="tramo__parte tramo__parte--indigo" style="flex:0 0 48%"></span></span></span>
+      </a>
+      <a class="serv__fila entra" href="#contacto" data-perfil="pyme comunidad">
+        <span class="serv__nombre">Peritos judiciales <span class="flecha" aria-hidden="true">→</span></span>
+        <span class="serv__disc">Independencia · rigor · profesionalidad · tecnología · conocimiento</span>
+        <span class="serv__precio">a medida</span>
+        <span class="serv__barra"><span class="tramo tramo--fino"><span class="tramo__parte tramo__parte--indigo" style="flex:0 0 42%"></span></span></span>
+      </a>
+      <a class="serv__fila entra" href="#contacto" data-perfil="autonomo pyme comunidad">
+        <span class="serv__nombre">Seguros generales <span class="flecha" aria-hidden="true">→</span></span>
+        <span class="serv__disc">Vida · ahorro · PYMES · comercio · responsabilidad civil</span>
+        <span class="serv__precio">estudio gratuito</span>
+        <span class="serv__barra"><span class="tramo tramo--fino"><span class="tramo__parte tramo__parte--indigo" style="flex:0 0 6%"></span></span></span>
+      </a>
+      <a class="serv__fila entra" href="#contacto" data-perfil="pyme autonomo">
+        <span class="serv__nombre">Detectives privados <span class="flecha" aria-hidden="true">→</span></span>
+        <span class="serv__disc">Investigación empresarial y familiar · vigilancias · búsquedas</span>
+        <span class="serv__precio">a medida</span>
+        <span class="serv__barra"><span class="tramo tramo--fino"><span class="tramo__parte tramo__parte--indigo" style="flex:0 0 38%"></span></span></span>
+      </a>
+      <a class="serv__fila entra" href="#herramientas" data-perfil="funcionario">
+        <span class="serv__nombre">CompatibleSí <span class="flecha" aria-hidden="true">→</span></span>
+        <span class="serv__disc">Compatibilidades de funcionarios · Ley 53/1984 · informe con IA</span>
+        <span class="serv__precio">desde 49 €</span>
+        <span class="serv__barra"><span class="tramo tramo--fino"><span class="tramo__parte tramo__parte--indigo" style="flex:0 0 10%"></span></span></span>
+      </a>
+      <p class="serv__vacio" hidden id="serv-vacio">No hay servicios para ese perfil. <button class="enl" type="button" data-reset>Ver todos</button></p>
+    </div>
+    <p class="sim__aviso" style="margin-top:var(--e2)">⚠️ Falta el número de TIP del Ministerio del Interior en Detectives Privados: es obligatorio y hoy no aparece en su web.</p>
+  </div>
+</section>
+
+<!-- ============ VERTICAL TRADERS ============ -->
+<section class="seccion vert" id="traders" aria-labelledby="t-traders">
+  <div class="env">
+    <span class="eyebrow">El vertical</span>
+    <h2 class="entra" id="t-traders">Fiscalidad del trading, sin humo</h2>
+    <p class="lead entra" data-r="1">Declaraciones impecables, criterio técnico y estrategia. Cuentas fondeadas, derivados, CFDs y criptoactivos.</p>
+
+    <div class="vert__rejilla">
+      <div>
+        <h3 class="entra">Cómo trabajamos tu caso</h3>
+        <div class="pasos6 entra" data-r="1">
+          <div class="paso6"><b>01 · Diagnóstico</b><p>30 minutos para entender tu operativa y tu situación.</p></div>
+          <div class="paso6"><b>02 · Análisis</b><p>Recopilación de extractos, brokers y movimientos.</p></div>
+          <div class="paso6"><b>03 · Estrategia</b><p>Estructura óptima: autónomo, sociedad o mixto.</p></div>
+          <div class="paso6"><b>04 · Implantación</b><p>Altas, contabilidad especializada y modelos.</p></div>
+          <div class="paso6"><b>05 · Seguimiento</b><p>Cierre de ejercicio y declaraciones.</p></div>
+          <div class="paso6"><b>06 · Defensa</b><p>Si llega una inspección, la llevamos nosotros.</p></div>
+        </div>
+        <p class="entra" data-r="2" style="margin-top:var(--e3);color:var(--grafito);font-size:.9375rem">
+          <strong>Cobertura normativa:</strong> LIRPF · MiCA (Reg. UE 2023/1114) · Orden HFP/886/2023 (modelo 721) · doctrina AEAT · modelos 100, 130, 303, 720, 721 y 200.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="entra">Planes</h3>
+        <div class="planes entra" data-r="1" style="margin-top:var(--e3)">
+          <div class="plan">
+            <div class="plan__cabeza"><span class="plan__nombre">Trader Esencial</span><span class="plan__precio">desde 190 €</span></div>
+            <p>Renta con operativa de contado, un solo bróker.</p>
+          </div>
+          <div class="plan">
+            <div class="plan__cabeza"><span class="plan__nombre">Derivados &amp; CFDs</span><span class="plan__precio">desde 290 €</span></div>
+            <p>Cuentas fondeadas, prop firms y apalancamiento.</p>
+          </div>
+          <div class="plan">
+            <div class="plan__cabeza"><span class="plan__nombre">Cripto Pro (MiCA)</span><span class="plan__precio">desde 320 €</span></div>
+            <p>Criptoactivos, modelo 721 y fiscalidad internacional.</p>
+          </div>
+        </div>
+        <p class="sim__aviso" style="margin-top:var(--e2)">⚠️ Hoy hay dos tarifas publicadas para el mismo servicio en dos URLs distintas (150/250/400 € y 190/290/320 €). Aquí figura la más reciente: hay que confirmar cuál es la vigente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HERRAMIENTAS ============ -->
+<section class="seccion" id="herramientas" aria-labelledby="t-herr">
+  <div class="env">
+    <span class="eyebrow">Herramientas propias</span>
+    <h2 class="entra" id="t-herr">Calcula antes de preguntar</h2>
+    <p class="lead entra" data-r="1">Seis calculadoras y un simulador fiscal de trading. Ningún competidor tiene nada parecido.</p>
+  </div>
+  <div class="env"><div class="herr__rejilla entra" data-r="2">
+    <div class="herr herr--destacada">
+      <h3>Simulador de trading con impacto fiscal</h3>
+      <p>Capital, número de operaciones, win rate, ganancia y pérdida media, comisión y apalancamiento. Elige régimen —IRPF ahorro, actividad económica o Sociedades— y compensa pérdidas. Te devuelve beneficio bruto, impuestos, neto y eficiencia fiscal, con informe en PDF.</p>
+      <form class="herr__captura" id="form-pdf">
+        <label class="oculto" for="email-pdf">Tu email para recibir el informe</label>
+        <input id="email-pdf" type="email" placeholder="tu@email.com" required>
+        <button class="btn" type="submit">Descargar el informe</button>
+      </form>
+      <p style="font-size:.75rem;color:var(--indigo-claro)" role="status" id="pdf-estado">Hoy el PDF se descarga sin pedir email: es el tráfico de mayor intención del sitio y se está regalando.</p>
+    </div>
+    <div class="herr"><h3>Cálculo de intereses</h3><p>Intereses de demora y legales sobre una deuda.</p></div>
+    <div class="herr"><h3>Actualización IPC</h3><p>Revaloriza rentas y alquileres con el índice oficial.</p></div>
+    <div class="herr"><h3>Indemnización por despido</h3><p>Improcedente, objetivo y por fin de contrato.</p></div>
+    <div class="herr"><h3>Pensión alimenticia</h3><p>Estimación según tablas del CGPJ.</p></div>
+    <div class="herr"><h3>Plusvalías</h3><p>Plusvalía municipal y ganancia patrimonial.</p></div>
+    <div class="herr"><h3>CompatibleSí</h3><p>Compatibilidades de funcionarios bajo la Ley 53/1984. Diagnóstico gratuito, informe desde 49 €.</p></div>
+  </div></div>
+</section>
+
+<!-- ============ CONFIANZA ============ -->
+<section class="seccion conf sobre-indigo" aria-labelledby="t-conf">
+  <div class="env">
+    <span class="eyebrow">Excelencia certificada</span>
+    <h2 class="entra" id="t-conf" style="color:var(--blanco)">Su tranquilidad es nuestro estándar</h2>
+    <div class="conf__rejilla">
+      <div>
+        <p class="entra" style="color:var(--indigo-claro)">De las primeras asesorías de España en obtener la certificación UNE 420001 de gestión de asesorías. Hoy vive en un submenú de su web.</p>
+        <p class="entra" data-r="1" style="margin-top:var(--e3)">
+          <span class="sello-une">
+            <span class="sello-une__marca" aria-hidden="true">UNE</span>
+            <span class="sello-une__txt"><b>UNE 420001:2024</b><span>Cert. 100736 · 28-11-2025 → 27-11-2026</span></span>
+          </span>
+        </p>
+        <p class="asoc entra" data-r="2">
+          <span>AECEM</span><span>APJUDE</span><span>Adecla</span><span>ATFAN</span>
+        </p>
+        <p class="entra" data-r="3" style="margin-top:var(--e3);color:var(--indigo-claro);font-size:.9375rem">
+          <strong style="color:var(--blanco)">Garantía de 21 días:</strong> si no cumplimos, te compensamos.
+        </p>
+      </div>
+      <div>
+        <h3 class="entra" style="color:var(--blanco);margin-bottom:var(--e2)">Decálogo de calidad</h3>
+        <ul class="decalogo entra" data-r="1">
+          <li>Disponibilidad</li><li>Atención sin demora</li>
+          <li>Conocimiento colectivo</li><li>Ética y confidencialidad</li>
+          <li>Comunicación y plazos</li><li>Calidad del lenguaje</li>
+          <li>Revisión por socio</li><li>Formatos UNE 197001:2011</li>
+          <li>Trazabilidad</li><li>Cierre de operación</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EQUIPO ============ -->
+<section class="seccion seccion--blanco" id="equipo" aria-labelledby="t-equipo">
+  <div class="env">
+    <span class="eyebrow">El equipo</span>
+    <h2 class="entra" id="t-equipo">Un equipo profesional comprometido con el éxito de tu proyecto</h2>
+    <p class="lead entra" data-r="1">Ayudar a la gente a ser un poquito más felices.</p>
+    <div class="equipo__rejilla">
+      <div class="persona entra">
+        <figure><picture>
+          <source type="image/avif" sizes="(min-width:900px) 22vw, 50vw" srcset="assets/img/retrato-fernando-sanchez-480.avif 480w, assets/img/retrato-fernando-sanchez-768.avif 768w">
+          <img src="assets/img/retrato-fernando-sanchez-480.webp" loading="lazy" decoding="async" sizes="(min-width:900px) 22vw, 50vw" srcset="assets/img/retrato-fernando-sanchez-480.webp 480w, assets/img/retrato-fernando-sanchez-768.webp 768w" width="1088" height="1360" alt="Retrato de Fernando Sánchez, CEO y fundador de JAP &amp; Asociados">
+        </picture></figure>
+        <div class="persona__pie">
+          <h3>Fernando Sánchez</h3>
+          <p class="persona__cargo">CEO y fundador · Perito judicial · Asesor empresarial y financiero · Administrador de fincas · Inspector de viviendas</p>
+          <p class="persona__col">Acreditaciones pendientes</p>
+        </div>
+      </div>
+      <div class="persona entra" data-r="1">
+        <figure><picture>
+          <source type="image/avif" sizes="(min-width:900px) 22vw, 50vw" srcset="assets/img/retrato-pilar-tallon-480.avif 480w">
+          <img src="assets/img/retrato-pilar-tallon-480.webp" loading="lazy" decoding="async" width="426" height="532" alt="Retrato de Pilar Tallón, abogada y mediadora de conflictos">
+        </picture></figure>
+        <div class="persona__pie">
+          <h3>Pilar Tallón</h3>
+          <p class="persona__cargo">Abogada · Mediadora de conflictos</p>
+          <p class="persona__col">Nº de colegiación pendiente</p>
+        </div>
+      </div>
+      <div class="persona entra" data-r="2">
+        <figure><picture>
+          <source type="image/avif" sizes="(min-width:900px) 22vw, 50vw" srcset="assets/img/retrato-marian-tallon-480.avif 480w, assets/img/retrato-marian-tallon-768.avif 768w">
+          <img src="assets/img/retrato-marian-tallon-480.webp" loading="lazy" decoding="async" sizes="(min-width:900px) 22vw, 50vw" srcset="assets/img/retrato-marian-tallon-480.webp 480w, assets/img/retrato-marian-tallon-768.webp 768w" width="870" height="1088" alt="Retrato de Marian Tallón, abogada y mediadora de conflictos">
+        </picture></figure>
+        <div class="persona__pie">
+          <h3>Marian Tallón</h3>
+          <p class="persona__cargo">Abogada · Mediadora de conflictos</p>
+          <p class="persona__col">Nº de colegiación pendiente</p>
+        </div>
+      </div>
+    </div>
+    <p class="sim__aviso" style="margin-top:var(--e3)">Los tres retratos vienen de orígenes distintos y aquí se unifican con un mismo tratamiento y recorte. El de Fernando es hoy una foto de carnet, y es el CEO: una sesión real es la inversión de mayor retorno del proyecto. <strong>Y falta el número de colegiación de cada profesional, que es la señal de confianza nº1 en un despacho.</strong></p>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="seccion" id="contacto" aria-labelledby="t-cont">
+  <div class="env">
+    <span class="eyebrow">Contacto</span>
+    <h2 class="entra" id="t-cont">Diagnóstico gratuito de 30 minutos</h2>
+    <p class="lead entra" data-r="1">Cuéntanos tu caso y te decimos qué se puede hacer. Sin compromiso.</p>
+    <div class="cont__rejilla">
+      <form class="form entra" data-r="2" id="form-contacto" novalidate>
+        <div class="form__par">
+          <div class="form__grupo"><label for="nombre">Nombre</label><input id="nombre" name="nombre" type="text" autocomplete="name" required></div>
+          <div class="form__grupo"><label for="empresa">Empresa (opcional)</label><input id="empresa" name="empresa" type="text" autocomplete="organization"></div>
+        </div>
+        <div class="form__par">
+          <div class="form__grupo"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+          <div class="form__grupo"><label for="telefono">Teléfono</label><input id="telefono" name="telefono" type="tel" autocomplete="tel" required></div>
+        </div>
+        <div class="form__grupo">
+          <label for="departamento">Departamento</label>
+          <select id="departamento" name="departamento">
+            <option>Asesoría traders</option><option>Asesoría de empresa</option><option>Asesoría jurídica</option>
+            <option>Administración de fincas</option><option>Gestión de patrimonio</option>
+            <option>Peritaje judicial</option><option>Seguros</option><option>CompatibleSí</option>
+          </select>
+        </div>
+        <div class="form__grupo"><label for="mensaje">Cuéntanos tu caso</label><textarea id="mensaje" name="mensaje" rows="4"></textarea></div>
+        <p class="form__legal">
+          <input id="politica" type="checkbox" required>
+          <label for="politica">He leído y acepto la <a class="enl" href="#" style="display:inline">política de privacidad</a>.</label>
+        </p>
+        <p><button class="btn" type="submit">Pedir diagnóstico</button></p>
+        <p class="sim__aviso">Te respondemos en menos de 24 horas laborables.</p>
+        <p class="sim__aviso" role="status" id="cont-estado"></p>
+      </form>
+
+      <div class="datos entra" data-r="3">
+        <div class="datos__bloque"><dt>Teléfono</dt><dd><a class="enl" href="tel:+34925101997">925 101 997</a></dd></div>
+        <div class="datos__bloque"><dt>Email</dt><dd><a class="enl" href="mailto:info@japyasociados.com">info@japyasociados.com</a></dd></div>
+        <div class="datos__bloque"><dt>Despacho</dt><dd>C/ Toledo, 34 — 1ª planta<br>28981 Parla, Madrid</dd></div>
+        <div class="datos__bloque"><dt>Horario</dt><dd>Pendiente de confirmar</dd></div>
+        <div class="datos__bloque"><dt>Cita online</dt><dd><a class="enl" href="#">Reservar 30 minutos <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="2"/></svg></a></dd></div>
+        <p class="sim__aviso">Los horarios de atención no aparecen hoy en ninguna página de su web, y no existe reserva de cita online.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="env">
+    <div class="pie__rejilla">
+      <div>
+        <p class="cab__marca" style="font-size:1.4rem">JAP <span>&amp; Asociados</span></p>
+        <p style="margin-top:var(--e2);font-size:var(--t-small)">En JAP y Asociados asesoramos a empresas y particulares como asesoría jurídica, administradores de fincas y gestión del patrimonio. También prestamos nuestra ayuda como Peritos Judiciales Colegiados y agentes libres de seguros.</p>
+        <p style="margin-top:var(--e3)">
+          <span class="sello-une">
+            <span class="sello-une__marca" aria-hidden="true">UNE</span>
+            <span class="sello-une__txt"><b>UNE 420001:2024</b><span>Cert. 100736</span></span>
+          </span>
+        </p>
+      </div>
+      <div>
+        <h3>Contacto</h3>
+        <ul class="pie__lista">
+          <li><a href="tel:+34925101997">925 101 997</a></li>
+          <li><a href="mailto:info@japyasociados.com">info@japyasociados.com</a></li>
+          <li>C/ Toledo, 34 — 1ª planta</li>
+          <li>28981 Parla, Madrid</li>
+          <li style="margin-top:8px"><a href="https://www.linkedin.com/company/jap-asociados/" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.youtube.com/channel/UCdNGz9N6n29ipPOqXGWUQtQ/" rel="noopener">YouTube</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Legal</h3>
+        <ul class="pie__lista">
+          <li><a href="#">Aviso legal</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="#">Política de cookies</a></li>
+          <li><a href="#"><strong>Términos de contratación</strong></a></li>
+          <li><a href="#">Canal de denuncias</a></li>
+        </ul>
+        <p style="margin-top:var(--e2);font-size:.75rem;color:rgba(255,255,255,.5)">Los términos de contratación no existen hoy, y se vende por WooCommerce con suscripciones de hasta 999,99 €/mes.</p>
+      </div>
+    </div>
+    <div class="pie__legal">
+      <p>2026 © JAP y Asociados Emprendedores, S.L. · CIF B22674675</p>
+      <ul><li>Hacemos lo difícil e intentamos lo imposible</li></ul>
+    </div>
+  </div>
+</footer>
+
+<nav class="barra" aria-label="Acciones rápidas">
+  <a href="tel:+34925101997">Llamar</a>
+  <a href="https://wa.me/34925101997" rel="noopener">WhatsApp</a>
+  <a href="#contacto" data-p>Diagnóstico</a>
+</nav>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":["ProfessionalService","LocalBusiness","AccountingService"],"@id":"https://japyasociados.com/#firma",
+"name":"JAP & Asociados","legalName":"JAP y Asociados Emprendedores, S.L.","vatID":"ESB22674675",
+"description":"Asesoría multidisciplinar certificada UNE 420001 en Parla, Madrid. Especialistas en fiscalidad del trading, cuentas fondeadas y criptoactivos.",
+"url":"https://japyasociados.com/","telephone":"+34925101997","email":"info@japyasociados.com","priceRange":"€€",
+"address":{"@type":"PostalAddress","streetAddress":"Calle de Toledo, 34, 1ª planta","addressLocality":"Parla","addressRegion":"Madrid","postalCode":"28981","addressCountry":"ES"},
+"areaServed":[{"@type":"City","name":"Parla"},{"@type":"City","name":"Getafe"},{"@type":"City","name":"Madrid"}],
+"sameAs":["https://www.linkedin.com/company/jap-asociados/","https://twitter.com/AsociadosJap","https://www.instagram.com/japyasociados","https://www.facebook.com/JAPYASOCIADOS/"],
+"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"30","bestRating":"5"},
+"hasCertification":{"@type":"Certification","name":"UNE 420001:2024","identifier":"100736","issuedBy":{"@type":"Organization","name":"BSCert"},"validIn":{"@type":"Country","name":"España"}},
+"employee":[
+ {"@type":"Person","name":"Fernando Sánchez","jobTitle":"CEO y fundador"},
+ {"@type":"Person","name":"Pilar Tallón","jobTitle":"Abogada · Mediadora de conflictos"},
+ {"@type":"Person","name":"Marian Tallón","jobTitle":"Abogada · Mediadora de conflictos"}],
+"hasOfferCatalog":{"@type":"OfferCatalog","name":"Servicios","itemListElement":[
+ {"@type":"Offer","priceCurrency":"EUR","price":"190","itemOffered":{"@type":"Service","name":"Fiscalidad para traders"}},
+ {"@type":"Offer","priceCurrency":"EUR","price":"30","itemOffered":{"@type":"Service","name":"Asesoría de empresas y autónomos"}},
+ {"@type":"Offer","priceCurrency":"EUR","price":"50","itemOffered":{"@type":"Service","name":"Administración de fincas"}},
+ {"@type":"Offer","priceCurrency":"EUR","price":"49","itemOffered":{"@type":"Service","name":"CompatibleSí — informe de compatibilidad"}},
+ {"@type":"Offer","itemOffered":{"@type":"Service","name":"Asesoría jurídica"}},
+ {"@type":"Offer","itemOffered":{"@type":"Service","name":"Gestión de patrimonio"}},
+ {"@type":"Offer","itemOffered":{"@type":"Service","name":"Peritaje judicial"}},
+ {"@type":"Offer","itemOffered":{"@type":"Service","name":"Seguros generales"}}]}},
+{"@type":"WebSite","@id":"https://japyasociados.com/#web","url":"https://japyasociados.com/","name":"JAP & Asociados","inLanguage":"es-ES","publisher":{"@id":"https://japyasociados.com/#firma"}}
+]}
+</script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
