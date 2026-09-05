@@ -1,166 +1,100 @@
-/* ============================================================
-   JAP & ASOCIADOS — "TRAMO"
-   El hero no describe el servicio: lo hace.
-   Todo el contenido es legible sin JavaScript.
-   ============================================================ */
-(() => {
+/* JAP & Asociados — interacción de la homepage
+   Sin dependencias. Todo el contenido es legible sin JS. */
+(function () {
   'use strict';
-  const captura = location.search.includes('ss');
-  const quieto  = captura || matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const $  = (s, c = document) => c.querySelector(s);
-  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
-  if (captura) {
-    $$('img[loading="lazy"]').forEach(i => i.loading = 'eager');
-    document.documentElement.classList.add('captura');
+  var html = document.documentElement;
+
+  /* 1. Secuencia de entrada del hero: arranca cuando las fuentes están listas */
+  var arrancado = false;
+  function arranca() {
+    if (arrancado) return;
+    arrancado = true;
+    html.classList.add('cargado');
   }
-
-  // useGrouping:'always' — sin esto, es-ES no separa los millares de 4 cifras
-  // y "8280 €" queda junto a "31.720 €" en la misma tarjeta
-  const cabecera = $('.cab');
-  if (cabecera) {
-    const medir = () => document.documentElement.style
-      .setProperty('--cab-h', cabecera.offsetHeight + 'px');
-    medir(); addEventListener('resize', medir, { passive: true });
-  }
-
-  const eur = n => new Intl.NumberFormat('es-ES', {
-    style: 'currency', currency: 'EUR', maximumFractionDigits: 0, useGrouping: 'always'
-  }).format(Math.round(n));
-  const pct = n => new Intl.NumberFormat('es-ES', {
-    style: 'percent', maximumFractionDigits: 1
-  }).format(n);
-
-  /* ---------- Entrada al viewport ---------- */
-  const entradas = $$('.entra');
-  if (quieto || !('IntersectionObserver' in window)) {
-    entradas.forEach(el => el.classList.add('visible'));
-    $$('.tramo').forEach(t => t.classList.add('tramo--ya'));
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(arranca);
   } else {
-    const io = new IntersectionObserver((filas, obs) => {
-      filas.forEach(f => {
-        if (!f.isIntersecting) return;
-        f.target.classList.add('visible');
-        $$('.tramo', f.target).forEach(t => t.classList.add('tramo--ya'));
-        obs.unobserve(f.target);
+    arranca();
+  }
+  setTimeout(arranca, 1200);
+
+  /* 2. Cabecera compacta al hacer scroll */
+  var cab = document.getElementById('cabecera');
+  function alScroll() {
+    cab.classList.toggle('cab--compacta', window.scrollY > 8);
+  }
+  alScroll();
+  window.addEventListener('scroll', alScroll, { passive: true });
+
+  /* 3. Revelado de bloques al entrar en el viewport */
+  var animados = document.querySelectorAll('[data-anim]');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visto');
+          io.unobserve(e.target);
+        }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
-    entradas.forEach(el => io.observe(el));
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+    animados.forEach(function (el) { io.observe(el); });
+  } else {
+    animados.forEach(function (el) { el.classList.add('visto'); });
   }
 
-  /* ============================================================
-     EL SIMULADOR
-     Base del ahorro (IRPF) frente a Impuesto de Sociedades.
-     Cálculo orientativo y deliberadamente simplificado: el aviso
-     bajo el simulador dice exactamente qué no contempla.
-     ============================================================ */
-  const TRAMOS_AHORRO = [        // IRPF, base del ahorro
-    [6000,    0.19],
-    [50000,   0.21],
-    [200000,  0.23],
-    [300000,  0.27],
-    [Infinity,0.30],
-  ];
-  const TIPO_IS = 0.23;          // cifra de negocio < 1 M€
+  /* 4. Menú: submenús (táctil y teclado) y panel móvil */
+  var burger = document.querySelector('.cab__burger');
+  var nav = document.getElementById('nav');
+  var items = Array.prototype.slice.call(document.querySelectorAll('.nav__item--sub'));
 
-  const cuotaAhorro = base => {
-    let cuota = 0, previo = 0;
-    for (const [techo, tipo] of TRAMOS_AHORRO) {
-      if (base <= previo) break;
-      cuota += (Math.min(base, techo) - previo) * tipo;
-      previo = techo;
+  function cierraTodos(salvo) {
+    items.forEach(function (it) {
+      if (it === salvo) return;
+      it.classList.remove('abierto');
+      var b = it.querySelector('button[aria-expanded]');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  items.forEach(function (it) {
+    var btn = it.querySelector('button[aria-expanded]');
+    if (!btn) return;
+    btn.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      var abrir = !it.classList.contains('abierto');
+      cierraTodos(it);
+      it.classList.toggle('abierto', abrir);
+      btn.setAttribute('aria-expanded', String(abrir));
+    });
+  });
+
+  document.addEventListener('click', function (ev) {
+    if (!ev.target.closest('.nav__item--sub')) cierraTodos();
+  });
+
+  function alternaMovil(forzar) {
+    var abierto = typeof forzar === 'boolean' ? forzar : !nav.classList.contains('abierto');
+    nav.classList.toggle('abierto', abierto);
+    burger.setAttribute('aria-expanded', String(abierto));
+    burger.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+    document.body.classList.toggle('sin-scroll', abierto);
+    if (!abierto) cierraTodos();
+  }
+  burger.addEventListener('click', function () { alternaMovil(); });
+
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key !== 'Escape') return;
+    cierraTodos();
+    if (nav.classList.contains('abierto')) {
+      alternaMovil(false);
+      burger.focus();
     }
-    return cuota;
-  };
-
-  const sim = $('#simulador');
-  if (sim) {
-    const campo  = $('#beneficio');
-    const rango  = $('#beneficio-rango');
-    const pinta  = {
-      pfNeto: $('#pf-neto'), pfPaga: $('#pf-paga'), pfTipo: $('#pf-tipo'),
-      pfQueda: $('#pf-barra-queda'), pfPagaB: $('#pf-barra-paga'),
-      slNeto: $('#sl-neto'), slPaga: $('#sl-paga'),
-      slQueda: $('#sl-barra-queda'), slPagaB: $('#sl-barra-paga'),
-      ahorro: $('#ahorro-cifra'),
-    };
-
-    const calcular = base => {
-      const pfCuota = cuotaAhorro(base);
-      const slCuota = base * TIPO_IS;
-      const pfNeto = base - pfCuota, slNeto = base - slCuota;
-
-      pinta.pfNeto.textContent = eur(pfNeto);
-      pinta.pfPaga.textContent = eur(pfCuota);
-      pinta.pfTipo.textContent = base > 0 ? pct(pfCuota / base) : '—';
-      pinta.slNeto.textContent = eur(slNeto);
-      pinta.slPaga.textContent = eur(slCuota);
-
-      pinta.pfQueda.style.flex = `0 0 ${(pfNeto / base * 100).toFixed(2)}%`;
-      pinta.pfPagaB.style.flex = `0 0 ${(pfCuota / base * 100).toFixed(2)}%`;
-      pinta.slQueda.style.flex = `0 0 ${(slNeto / base * 100).toFixed(2)}%`;
-      pinta.slPagaB.style.flex = `0 0 ${(slCuota / base * 100).toFixed(2)}%`;
-
-      const dif = Math.abs(pfCuota - slCuota);
-      pinta.ahorro.textContent = dif < 1
-        ? 'sin diferencia'
-        : `${eur(dif)} · ${pfCuota > slCuota ? 'la sociedad paga menos' : 'la persona física paga menos'}`;
-    };
-
-    const leer = txt => {
-      const n = parseInt(String(txt).replace(/[^\d]/g, ''), 10);
-      return Number.isFinite(n) ? Math.min(Math.max(n, 0), 5_000_000) : 0;
-    };
-    const formatear = n => new Intl.NumberFormat('es-ES', { useGrouping: 'always' }).format(n);
-
-    campo.addEventListener('input', () => {
-      const n = leer(campo.value);
-      if (n > 0) { calcular(n); if (n <= +rango.max) rango.value = n; }
-    });
-    campo.addEventListener('blur', () => {
-      const n = leer(campo.value);
-      campo.value = formatear(n || 0);
-    });
-    rango.addEventListener('input', () => {
-      campo.value = formatear(+rango.value);
-      calcular(+rango.value);
-    });
-
-    calcular(leer(campo.value) || 40000);
-    sim.querySelectorAll('.tramo').forEach(t => t.classList.add('tramo--ya'));
-  }
-
-  /* ---------- Triaje: filtra el índice de servicios ---------- */
-  const chips  = $$('.chip[data-perfil]');
-  const filas  = $$('.serv__fila[data-perfil]');
-  const vacio  = $('#serv-vacio');
-
-  const filtrar = perfil => {
-    let n = 0;
-    filas.forEach(f => {
-      const entra = perfil === 'todo' || f.dataset.perfil.split(' ').includes(perfil);
-      f.hidden = !entra;
-      if (entra) n++;
-    });
-    if (vacio) vacio.hidden = n > 0;
-  };
-  chips.forEach(chip => chip.addEventListener('click', () => {
-    chips.forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
-    filtrar(chip.dataset.perfil);
-  }));
-  const reset = $('[data-reset]');
-  if (reset) reset.addEventListener('click', () => chips[0].click());
-
-  /* ---------- Formularios ---------- */
-  const pdf = $('#form-pdf');
-  if (pdf) pdf.addEventListener('submit', ev => {
-    ev.preventDefault();
-    $('#pdf-estado').textContent = 'Prototipo: en producción, el informe llega al email y el lead entra en el CRM.';
   });
 
-  const cont = $('#form-contacto');
-  if (cont) cont.addEventListener('submit', ev => {
-    ev.preventDefault();
-    if (!cont.checkValidity()) { cont.reportValidity(); return; }
-    $('#cont-estado').textContent = 'Prototipo: el formulario aún no envía. En producción avisa al departamento elegido.';
-  });
+  var mq = window.matchMedia('(min-width: 1081px)');
+  var alCambiar = function () {
+    if (mq.matches && nav.classList.contains('abierto')) alternaMovil(false);
+  };
+  if (mq.addEventListener) mq.addEventListener('change', alCambiar);
+  else if (mq.addListener) mq.addListener(alCambiar);
 })();
