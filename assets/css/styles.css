@@ -184,7 +184,8 @@ body.sin-scroll{overflow:hidden}
 .tarjeta-hero__txt span{font-size:.85rem;color:var(--gris)}
 .tarjeta-hero__flota .tarjeta-hero__num{font:700 3.2rem/1 var(--f-display);color:var(--azul-hondo);flex:0 0 auto}
 .tarjeta-hero--une{left:-6%;top:18%;width:62%;--rot:-2deg;--pf:14px}
-.tarjeta-hero--anos{left:0;bottom:4%;width:50%;--rot:2deg;--pf:8px}
+.tarjeta-hero--anos{left:0;bottom:4%;width:54%;--rot:2deg;--pf:8px}
+.tarjeta-hero--anos .tarjeta-hero__txt strong{white-space:normal;line-height:1.1}
 .tarjeta-hero--nota{right:-2%;bottom:14%;width:46%;--rot:-1.5deg;--pf:18px}
 .tarjeta-hero--anos .tarjeta-hero__flota{animation-duration:8s;animation-delay:-2s}
 .tarjeta-hero--nota .tarjeta-hero__flota{animation-duration:6.5s;animation-delay:-4s;flex-direction:column;align-items:flex-start;gap:.5rem}
