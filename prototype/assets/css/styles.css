@@ -180,10 +180,10 @@ body.sin-scroll{overflow:hidden}
 .tarjeta-hero__flota{display:flex;align-items:center;gap:1rem;background:#fff;padding:1.1rem 1.3rem;border-radius:20px;box-shadow:0 40px 70px -26px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.45);animation:flota 7s ease-in-out infinite alternate}
 .tarjeta-hero__flota>img{width:60px;height:60px;flex:0 0 auto}
 .tarjeta-hero__txt{display:flex;flex-direction:column;line-height:1.3;min-width:0}
-.tarjeta-hero__txt strong{font-family:var(--f-display);font-size:1.2rem;color:var(--marino)}
+.tarjeta-hero__txt strong{font-family:var(--f-display);font-size:1.1rem;color:var(--marino);white-space:nowrap}
 .tarjeta-hero__txt span{font-size:.85rem;color:var(--gris)}
 .tarjeta-hero__flota .tarjeta-hero__num{font:700 3.2rem/1 var(--f-display);color:var(--azul-hondo);flex:0 0 auto}
-.tarjeta-hero--une{left:-4%;top:18%;width:56%;--rot:-2deg;--pf:14px}
+.tarjeta-hero--une{left:-6%;top:18%;width:62%;--rot:-2deg;--pf:14px}
 .tarjeta-hero--anos{left:0;bottom:4%;width:50%;--rot:2deg;--pf:8px}
 .tarjeta-hero--nota{right:-2%;bottom:14%;width:46%;--rot:-1.5deg;--pf:18px}
 .tarjeta-hero--anos .tarjeta-hero__flota{animation-duration:8s;animation-delay:-2s}
@@ -466,6 +466,9 @@ body.sin-scroll{overflow:hidden}
 .barra-movil a{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1rem;border-radius:999px;font-weight:600;text-decoration:none;color:var(--marino);background:var(--hielo)}
 .barra-movil svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .barra-movil__principal{flex:1;background:var(--azul-hondo)!important;color:#fff!important}
+
+/* ---------- Modo captura (?captura=1): el hero no fuerza la altura de pantalla ---------- */
+.captura .hero{min-height:0}
 
 /* ---------- Revelado al hacer scroll ---------- */
 .js [data-anim]{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:calc(var(--i,0)*90ms)}
