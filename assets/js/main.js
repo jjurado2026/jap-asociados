@@ -3,6 +3,7 @@
 (function () {
   'use strict';
   var html = document.documentElement;
+  if (/[?&]captura=1/.test(window.location.search)) html.classList.add('captura');
 
   /* 1. Secuencia de entrada del hero: arranca cuando las fuentes están listas */
   var arrancado = false;
