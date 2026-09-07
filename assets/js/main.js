@@ -30,6 +30,28 @@
   alScroll();
   window.addEventListener('scroll', alScroll, { passive: true });
 
+  /* 2b. Paralaje suave del hero con el puntero (solo ratón y sin movimiento reducido) */
+  var visual = document.querySelector('.hero__visual');
+  var finoYConMovimiento = window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (hero && visual && finoYConMovimiento) {
+    var pendiente = null;
+    hero.addEventListener('pointermove', function (ev) {
+      var r = hero.getBoundingClientRect();
+      var px = ((ev.clientX - r.left) / r.width - 0.5) * 2;
+      var py = ((ev.clientY - r.top) / r.height - 0.5) * 2;
+      if (pendiente) return;
+      pendiente = requestAnimationFrame(function () {
+        visual.style.setProperty('--px', px.toFixed(3));
+        visual.style.setProperty('--py', py.toFixed(3));
+        pendiente = null;
+      });
+    });
+    hero.addEventListener('pointerleave', function () {
+      visual.style.setProperty('--px', '0');
+      visual.style.setProperty('--py', '0');
+    });
+  }
+
   /* 3. Revelado de bloques al entrar en el viewport */
   var animados = document.querySelectorAll('[data-anim]');
   if ('IntersectionObserver' in window) {
